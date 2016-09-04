@@ -10,9 +10,9 @@ function draw(){
   //
   ctx.drawImage(slimeImg,slime.x,slime.y)
   }
-//等待1000毫秒再執行draw函式
-setTimeout(draw,1000);
+//等待16毫秒再執行draw函式(重複畫)
+setInterval(draw,16);
 var slime = {
-  x = 0,
-  y = 0
+  x:0,
+  y:0
 };
