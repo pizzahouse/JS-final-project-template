@@ -14,5 +14,5 @@ function draw(){
 setTimeout(draw,1000);
 var slime = {
   x = 0,
-  y = 0;
-}
+  y = 0
+};
