@@ -1,4 +1,4 @@
-var bgImg = document.creatElement("img");
+var bgImg = document.createElement("img");
 bgImg.src = "images/map.png";
 var canvus = document.getElementById("game-canvus");
 var ctx = canvus.getContext("2d");
