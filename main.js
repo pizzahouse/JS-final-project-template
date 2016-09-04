@@ -2,14 +2,17 @@ var bgImg = document.createElement("img");
 bgImg.src = "images/map.png";
 var canvas = document.getElementById("game-canvas");
 var ctx = canvas.getContext("2d");
-var enemyImg = document.createElement("img");
-enemyImg.src = "images/slime.gif"
+var slimeImg = document.createElement("img");
+slimeImg.src = "images/slime.gif"
 function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
   ctx.drawImage(bgImg,0,0);
   //
-  ctx.drawImage(enemyImg,0,0)
-  
-}
+  ctx.drawImage(slimeImg,slime.x,slime.y)
+  }
 //等待1000毫秒再執行draw函式
-setTimeoutdraw(draw,1000);
+setTimeout(draw,1000);
+var slime = {
+  x = 0;
+  y = 0;
+}
