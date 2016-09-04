@@ -13,6 +13,6 @@ function draw(){
 //等待1000毫秒再執行draw函式
 setTimeout(draw,1000);
 var slime = {
-  x = 0;
+  x = 0,
   y = 0;
 }
