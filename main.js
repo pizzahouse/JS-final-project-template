@@ -1,7 +1,7 @@
 var bgImg = document.createElement("img");
 bgImg.src = "images/map.png";
-var canvus = document.getElementById("game-canvus");
-var ctx = canvus.getContext("2d");
+var canvas = document.getElementById("game-canvas");
+var ctx = canvas.getContext("2d");
 var enemyImg = document.createElement("img");
 enemImg.src = "images/slime.gif"
 function draw(){
