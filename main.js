@@ -16,7 +16,7 @@ $("#game-canvas").on("mousemove",function(event){
 });
 //在建造塔的圖示範圍內點才算然後蓋防禦塔
 var isBuilding = false;
-var tower = {x:0,y=0}
+var tower = {x:0,y:0}
 $("#game-canvas").on("click",function(){
   if(cursor.x >= 640-664 && cursor.y >= 480-64){
     if(isBuilding == false){
