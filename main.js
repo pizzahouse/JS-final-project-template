@@ -8,18 +8,30 @@ var tower_btn_Img = document.createElement("img");
 tower_btn_Img.src = "images/tower-btn.png"
 var towerImg = document.createElement("img");
 towerImg.src = "images/tower.png"
-var cursor = {x:0,y:0}
 //防禦塔跟著滑鼠游標
+var cursor = {x:0,y:0}
 $("#game-canvas").on("mousemove",function(event){
   cursor.x = event.offsetX;
   cursor.y = event.offsetY;
 });
-var isbuilding = false;
+//在建造塔的圖示範圍內點才算然後蓋防禦塔
+var isBuilding = false;
+var tower = {x:0,y=0}
 $("#game-canvas").on("click",function(){
   if(cursor.x >= 640-664 && cursor.y >= 480-64){
-    console.log("click");
+    if(isBuilding == false){
+      isBuiling = true;
+    }else{
+      isBuilding = false;
+    }
+  }else{
+    if(isBuilding == true){
+      tower.x = cursor.x;
+      tower.y = cursor.y;
+    }
   }
 })
+//畫上去
 function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
   ctx.drawImage(bgImg,0,0);
@@ -28,7 +40,9 @@ function draw(){
   //建造塔放右下角
   ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
   //
-  ctx.drawImage(towerImg,cursor.x,cursor.y);
+  if(isBuilding = true){
+    ctx.drawImage(towerImg,cursor.x,cursor.y);
+  }  
   //
   
 }
