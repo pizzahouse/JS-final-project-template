@@ -10,9 +10,9 @@ function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
   ctx.drawImage(bgImg,0,0);
   //
-  ctx.drawImage(slimeImg,slime.x,slime.y)
+  ctx.drawImage(slimeImg,slime.x,slime.y);
   //
-  ctx.drawImage(towerImg,574,416)
+  ctx.drawImage(towerImg,574,416,64,64);
   }
 //等待16毫秒再執行draw函式(重複畫)
 setInterval(draw,16);
