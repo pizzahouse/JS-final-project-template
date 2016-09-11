@@ -4,8 +4,8 @@ var canvas = document.getElementById("game-canvas");
 var ctx = canvas.getContext("2d");
 var slimeImg = document.createElement("img");
 slimeImg.src = "images/slime.gif"
-var tower-btn-Img = document.createElement("img");
-tower-btn-Img.src = "images/tower-btn.png"
+var tower_btn_Img = document.createElement("img");
+tower_btn_Img.src = "images/tower-btn.png"
 var towerImg = document.createElement("img");
 towerImg.src = "images/tower.png"
 function draw(){
@@ -14,7 +14,7 @@ function draw(){
   //
   ctx.drawImage(slimeImg,slime.x,slime.y);
   //建造塔放右下角
-  ctx.drawImage(tower-btn-Img,640-64,480-64,64,64);
+  ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
   //
   ctx.drawImage(towerImg,);
   }
