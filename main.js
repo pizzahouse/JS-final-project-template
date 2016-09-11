@@ -12,7 +12,7 @@ function draw(){
   //
   ctx.drawImage(slimeImg,slime.x,slime.y);
   //
-  ctx.drawImage(towerImg,574,416,64,64);
+  ctx.drawImage(towerImg,640-64,480-64,64,64);
   }
 //等待16毫秒再執行draw函式(重複畫)
 setInterval(draw,16);
