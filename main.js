@@ -40,11 +40,11 @@ function draw(){
   //建造塔放右下角
   ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
   //
+  ctx.drawImage(towerImg,tower.x,tower.y);
+  //
   if(isBuilding = true){
     ctx.drawImage(towerImg,cursor.x,cursor.y);
   }  
-  //
-  
 }
 //等待16毫秒再執行draw函式(重複畫)
 setInterval(draw,16);
