@@ -8,6 +8,7 @@ var tower_btn_Img = document.createElement("img");
 tower_btn_Img.src = "images/tower-btn.png"
 var towerImg = document.createElement("img");
 towerImg.src = "images/tower.png"
+var cursor = {x:0,y:0}
 function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
   ctx.drawImage(bgImg,0,0);
@@ -16,7 +17,7 @@ function draw(){
   //建造塔放右下角
   ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
   //
-  
+  ctx.drawImage(towerImg,cursor.x,cursor.y);
   }
 //等待16毫秒再執行draw函式(重複畫)
 setInterval(draw,16);
@@ -26,7 +27,8 @@ var slime = {
 };
 //
 $("#game-canvas").on("mousemove",function(event){
-  console.log("x:" + event.offsetX + "y:" + event.offsetY);
+  cursor.x = event.offsetX;
+  cursor.y = event.offsetY;
 });
 
 
