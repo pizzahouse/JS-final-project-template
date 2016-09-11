@@ -28,7 +28,7 @@ $("#game-canvas").on("click",function(){
     if(isBuilding == true){
       tower.x = cursor.x;
       tower.y = cursor.y;
-      isBuiling = false;
+      isBuiuling = false;
     }
   }
 })
