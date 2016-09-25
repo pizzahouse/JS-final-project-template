@@ -18,7 +18,7 @@ $("#game-canvas").on("mousemove",function(event){
 var isBuilding = false;
 var tower = {x:0,y:0}
 $("#game-canvas").on("click",function(){
-  if(cursor.x >= 640-664 && cursor.y >= 480-64){
+  if(cursor.x >= 640-64 && cursor.y >= 480-64){
     if(isBuilding == false){
       isBuiling = true;
     }else{
