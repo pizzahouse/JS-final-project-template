@@ -28,6 +28,7 @@ $("#game-canvas").on("click",function(){
     if(isBuilding == true){
       tower.x = cursor.x;
       tower.y = cursor.y;
+      isBuiuling = false;
     }
   }
 })
@@ -49,8 +50,8 @@ function draw(){
 //等待16毫秒再執行draw函式(重複畫)
 setInterval(draw,16);
 var slime = {
-  x:0,
-  y:0
+  x:96,
+  y:448
 };
 
 
