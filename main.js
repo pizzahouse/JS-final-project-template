@@ -17,7 +17,7 @@ $("#game-canvas").on("mousemove",function(event){
 });
 //在建造塔的圖示範圍內點才算然後蓋防禦塔
 var isBuilding = false;
-var tower = {x:0,y:0}
+var tower = {x:0,y:0};
 $("#game-canvas").on("click",function(){
   if(cursor.x >= 640-64 && cursor.y >= 480-64){
     if(isBuilding == false){
@@ -31,7 +31,7 @@ $("#game-canvas").on("click",function(){
       tower.y = cursor.y;
     }
   }
-})
+});
 //畫上去
 function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
@@ -59,7 +59,7 @@ var enemy = {
   move:function (){
     this.x = this.x + this.speedX/FPS;
     this.x = this.y + this.speedY/FPS;
-  };
+  }
 };
 
 
