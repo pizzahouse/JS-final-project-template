@@ -1,9 +1,10 @@
+var FPS = 60;
 var bgImg = document.createElement("img");
 bgImg.src = "images/map.png";
 var canvas = document.getElementById("game-canvas");
 var ctx = canvas.getContext("2d");
-var slimeImg = document.createElement("img");
-slimeImg.src = "images/slime.gif"
+var enemyImg = document.createElement("img");
+enemyImg.src = "images/slime.gif"
 var tower_btn_Img = document.createElement("img");
 tower_btn_Img.src = "images/tower-btn.png"
 var towerImg = document.createElement("img");
@@ -36,21 +37,29 @@ function draw(){
   //將背景圖片畫在canvus上的(0,0)位置
   ctx.drawImage(bgImg,0,0);
   //
-  ctx.drawImage(slimeImg,slime.x,slime.y);
+  ctx.drawImage(enemyImg,enemy.x,enemy.y);
   //建造塔放右下角
   ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
   //
   ctx.drawImage(towerImg,tower.x,tower.y);
   //
   if(isBuilding = true){
-    ctx.drawImage(towerImg,cursor.x,cursor.y);
-  }  
+    ctx.drawImage(towerImg,cursor.x,cursor.y);    
+  }
+  //
+  enemy.move();
 }
 //等待16毫秒再執行draw函式(重複畫)
-setInterval(draw,16);
-var slime = {
+setInterval(draw,1000/FPS);
+var enemy = {
   x:96,
-  y:448
+  y:448,
+  speedX:0,
+  speedY:-64,
+  move:function (){
+    this.x = this.x + this.speedX/FPS;
+    this.x = this.y + this.speedY/FPS;
+  };
 };
 
 
