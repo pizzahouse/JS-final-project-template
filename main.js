@@ -56,11 +56,36 @@ var enemy = {
   y:448,
   speedX:0,
   speedY:-64,
+  if(pathDes == 1){
+    speedX = 64;
+    speedY = 0;
+  }
+  //pathDes為設定路徑點編號
+  pathDes:0,
   move:function(){
     this.x = this.x + this.speedX/FPS;
     this.y = this.y + this.speedY/FPS;
   }
 };
+//轉彎路徑點
+var enemyPath = [
+  {x:96, y:64},
+  {x:384, y:64},
+  {x:384, y:192},
+  {x:224, y:192},
+  {x:224, y:320},
+  {x:544, y:320},
+];
+//判斷是否在路徑點附近
+function iscollided(pointX,pointY,targetX,targetY,targetWidth,targetHeight){
+  if(pointX >= pointY && pointX <= pointY + targetWidth && pointY <= targetY + targetHeight){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
 
 
 
