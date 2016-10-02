@@ -58,10 +58,32 @@ var enemy = {
   speedY:-64,
   //pathDes為設定路徑點編號
   pathDes:0,
+  
   move:function(){
-    if(){
+    //移至路徑點
+    if(iscollided(enemyPath[this.pathDes].x,enemyPath[this.pathDes].y,this.x,this.y,this.speedX/FPS,this.speedY/FPS)){
+      this.x = enemyPath[this.pathDes].x;
+      this.y = enemyPath[this.pathDes].y;
+
+      if(this.x == enemyPath[this.pathDes + 1].x){
+        if(this.y > enemyPath[this.pathDes].y){
+          this.speedX = 0;
+          this.speedY = -64;
+        }else{
+          this.speedX = 0;
+          this.speedY = 64;
+        }
+      }else if(this.y == enemyPath[this.pathDes + 1].y){
+        if(this.x > enemyPath[this.pathDes].x){
+          this.speedX = -64;
+          this.speedY = 0;
+        }else{
+          this.speedX = 64;
+          this.speedY = 0;
+        }
+      }
     
-    }
+    
     this.x = this.x + this.speedX/FPS;
     this.y = this.y + this.speedY/FPS;
   }
@@ -77,7 +99,7 @@ var enemyPath = [
 ];
 //判斷是否在路徑點附近
 function iscollided(pointX,pointY,targetX,targetY,targetWidth,targetHeight){
-  if(pointX >= pointY && pointX <= pointY + targetWidth && pointY <= targetY + targetHeight){
+  if(pointX >= targetY && pointX <= pointY + targetWidth && pointY <= targetY && pointY <= targetY + targetHeight){
     return true;
   }else{
     return false;
