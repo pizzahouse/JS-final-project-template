@@ -56,13 +56,12 @@ var enemy = {
   y:448,
   speedX:0,
   speedY:-64,
-  if(pathDes == 1){
-    speedX = 64;
-    speedY = 0;
-  }
   //pathDes為設定路徑點編號
   pathDes:0,
   move:function(){
+    if(){
+    
+    }
     this.x = this.x + this.speedX/FPS;
     this.y = this.y + this.speedY/FPS;
   }
