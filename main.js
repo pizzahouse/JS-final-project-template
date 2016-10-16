@@ -61,7 +61,7 @@ var enemy = {
   
   move:function(){
     //移至路徑點
-    if(iscollided(enemyPath[this.pathDes].x,enemyPath[this.pathDes].y,this.x,this.y,this.speedX/FPS,this.speedY/FPS)){
+    if(iscollided(enemyPath[this.pathDes].x,enemyPath[this.pathDes].y,this.x,this.y,64/FPS,64/FPS)){
       this.x = enemyPath[this.pathDes].x;
       this.y = enemyPath[this.pathDes].y;
 
