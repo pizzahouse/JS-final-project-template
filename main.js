@@ -9,6 +9,8 @@ towerImg.src = "images/tower.png";
 var canvas = document.getElementById("game-canvas");
 var ctx = canvas.getContext("2d");
 var fps = 60;
+var enemies = []
+var clock = 0
 var enemyPath = [
   {x: 96, y: 64},
   {x: 384, y: 64},
@@ -17,7 +19,7 @@ var enemyPath = [
   {x: 224, y: 320},
   {x: 544, y: 320},
 ];
-function enemy = {
+function Enemy = {
   this.x = 96,
   this.y = 448,
   this.pathDes = 0,
@@ -66,15 +68,21 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
-  enemy.move();
+  for(var i=0;i<enemies.length;i++){
+    enemies[i].move;
+    ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
+  }
   ctx.drawImage(bgImg,0,0);
-  ctx.drawImage(eImg,enemy.x,enemy.y);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
-  
+  clock++;
+  if(clock%80 == 0){
+    var newEnemy = new Enemy();
+    emenies.push(newEnemy);
+  }
 }
 setInterval(draw,1000/fps);
 $("body").on("keypress",key);
