@@ -68,10 +68,6 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
-  for(var i=0;i<enemies.length;i++){
-    enemies[i].move;
-    ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
-  }
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
@@ -82,6 +78,10 @@ function draw(){
   if(clock%80 == 0){
     var newEnemy = new Enemy();
     emenies.push(newEnemy);
+  }
+  for(var i=0;i<enemies.length;i++){
+    enemies[i].move;
+    ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
   }
 }
 setInterval(draw,1000/fps);
