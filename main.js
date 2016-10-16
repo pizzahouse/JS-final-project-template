@@ -66,7 +66,7 @@ var enemy = {
       this.y = enemyPath[this.pathDes].y;
 
       if(this.x == enemyPath[this.pathDes + 1].x){
-        if(this.y > enemyPath[this.pathDes].y){
+        if(this.y > enemyPath[this.pathDes + 1].y){
           this.speedX = 0;
           this.speedY = -64;
         }else{
@@ -74,7 +74,7 @@ var enemy = {
           this.speedY = 64;
         }
       }else if(this.y == enemyPath[this.pathDes + 1].y){
-        if(this.x > enemyPath[this.pathDes].x){
+        if(this.x > enemyPath[this.pathDes + 1].x){
           this.speedX = -64;
           this.speedY = 0;
         }else{
