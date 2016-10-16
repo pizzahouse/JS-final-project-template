@@ -77,7 +77,7 @@ function draw(){
   clock++;
   if(clock%80 == 0){
     var newEnemy = new Enemy();
-    emenies.push(newEnemy);
+    enemies.push(newEnemy);
   }
   for(var i=0;i<enemies.length;i++){
     enemies[i].move;
