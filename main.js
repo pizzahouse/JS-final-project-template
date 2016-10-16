@@ -87,7 +87,7 @@ var enemy = {
     this.x = this.x + this.speedX/FPS;
     this.y = this.y + this.speedY/FPS;
   }
-};
+}
 //轉彎路徑點
 var enemyPath = [
   {x:96, y:64},
@@ -105,17 +105,3 @@ function iscollided(pointX,pointY,targetX,targetY,targetWidth,targetHeight){
     return false;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
