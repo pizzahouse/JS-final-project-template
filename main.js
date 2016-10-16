@@ -80,7 +80,7 @@ function draw(){
     enemies.push(newEnemy);
   }
   for(var i=0;i<enemies.length;i++){
-    enemies[i].move;
+    enemies[i].move();
     ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
   }
 }
