@@ -1,108 +1,122 @@
-var FPS = 60;
 var bgImg = document.createElement("img");
 bgImg.src = "images/map.png";
+var eImg = document.createElement("img");
+eImg.src = "images/rukia.gif";
+var tImg = document.createElement("img");
+tImg.src = "images/tower-btn.png";
+var towerImg = document.createElement("img");
+towerImg.src = "images/tower.png";
 var canvas = document.getElementById("game-canvas");
 var ctx = canvas.getContext("2d");
-var enemyImg = document.createElement("img");
-enemyImg.src = "images/slime.gif"
-var tower_btn_Img = document.createElement("img");
-tower_btn_Img.src = "images/tower-btn.png"
-var towerImg = document.createElement("img");
-towerImg.src = "images/tower.png"
-//防禦塔跟著滑鼠游標(移動時有一格一格的感覺)
-var cursor = {x:0,y:0}
-$("#game-canvas").on("mousemove",function(event){
-  cursor.x = event.offsetX - (event.offsetX%32);
-  cursor.y = event.offsetY - (event.offsetY%32);
-});
-//在建造塔的圖示範圍內點才算然後蓋防禦塔
-var isBuilding = false;
-var tower = {x:0,y:0};
-$("#game-canvas").on("click",function(){
-  if(cursor.x >= 640-64 && cursor.y >= 480-64){
-    if(isBuilding == false){
-      isBuiling = true;
-    }else{
-      isBuilding = false;
-    }
-  }else{
-    if(isBuilding == true){
-      tower.x = cursor.x;
-      tower.y = cursor.y;
-    }
-  }
-});
-//畫上去
-function draw(){
-  //將背景圖片畫在canvus上的(0,0)位置
-  ctx.drawImage(bgImg,0,0);
-  //
-  ctx.drawImage(enemyImg,enemy.x,enemy.y);
-  //建造塔放右下角
-  ctx.drawImage(tower_btn_Img,640-64,480-64,64,64);
-  //
-  ctx.drawImage(towerImg,tower.x,tower.y);
-  //
-  if(isBuilding = true){
-    ctx.drawImage(towerImg,cursor.x,cursor.y);    
-  }
-  //
-  enemy.move();
-}
-//等待16毫秒再執行draw函式(重複畫)
-setInterval(draw,1000/FPS);
-var enemy = {
-  x:96,
-  y:448,
-  speedX:0,
-  speedY:-64,
-  //pathDes為設定路徑點編號
-  pathDes:0,
-  
-  move:function(){
-    //移至路徑點
-    if(iscollided(enemyPath[this.pathDes].x,enemyPath[this.pathDes].y,this.x,this.y,64/FPS,64/FPS)){
+var fps = 60;
+var enemyPath = [
+  {x: 96, y: 64},
+  {x: 384, y: 64},
+  {x: 384, y: 192},
+  {x: 224, y: 192},
+  {x: 224, y: 320},
+  {x: 544, y: 320},
+];
+function enemy = {
+  this.x = 96,
+  this.y = 448,
+  this.pathDes = 0,
+  this.speedX = 0,
+  this.speedY = -64,
+  this.move = function(){
+    if(isCollided(enemyPath[this.pathDes].x, enemyPath[this.pathDes].y, this.x, this.y, 64/fps, 64/fps)) {
       this.x = enemyPath[this.pathDes].x;
       this.y = enemyPath[this.pathDes].y;
-
-      if(this.x == enemyPath[this.pathDes + 1].x){
-        if(this.y > enemyPath[this.pathDes + 1].y){
-          this.speedX = 0;
+      
+      if(this.x == enemyPath[this.pathDes+1].x) {
+        if(this.y > enemyPath[this.pathDes+1].y) {
           this.speedY = -64;
-        }else{
           this.speedX = 0;
+        } else {
           this.speedY = 64;
+          this.speedX = 0;
         }
-      }else if(this.y == enemyPath[this.pathDes + 1].y){
-        if(this.x > enemyPath[this.pathDes + 1].x){
+      } else if (this.y == enemyPath[this.pathDes+1].y) {
+        if(this.x > enemyPath[this.pathDes+1].x) {
+          this.speedY = 0;
           this.speedX = -64;
+        } else {
           this.speedY = 0;
-        }else{
           this.speedX = 64;
-          this.speedY = 0;
         }
       }
+      
       this.pathDes += 1;
-    }else{ 
-      this.x = this.x + this.speedX/FPS;
-      this.y = this.y + this.speedY/FPS;
+      
+    } else {
+      this.x += this.speedX/fps;
+      this.y += this.speedY/fps;
     }
   }
 };
-//轉彎路徑點
-var enemyPath = [
-  {x:96, y:64},
-  {x:384, y:64},
-  {x:384, y:192},
-  {x:224, y:192},
-  {x:224, y:320},
-  {x:544, y:320},
-];
-//判斷是否在路徑點附近
-function iscollided(pointX,pointY,targetX,targetY,targetWidth,targetHeight){
-  if(pointX >= targetY && pointX <= pointY + targetWidth && pointY <= targetY && pointY <= targetY + targetHeight){
+var cursor = {x: 0, y: 0};
+var isBuilding = false;
+
+function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight){
+  if(pointX >= targetX && pointX <= targetX + targetWidth && pointY >= targetY && pointY <= targetY + targetHeight) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
+
+function draw(){
+  enemy.move();
+  ctx.drawImage(bgImg,0,0);
+  ctx.drawImage(eImg,enemy.x,enemy.y);
+  ctx.drawImage(tImg,640-64,480-64,64,64);
+  ctx.drawImage(towerImg, tower.x, tower.y);
+  if(isBuilding == true) {
+    ctx.drawImage(towerImg, cursor.x, cursor.y);  
+  }
+  
+}
+setInterval(draw,1000/fps);
+$("body").on("keypress",key);
+function key(event){
+  console.log(event.which)
+  if(event.which === 119){
+    enemy.y -= enemy.v[1]
+    enemy.v[1] *= 1.1
+  }
+  if(event.which === 115){
+    enemy.y += enemy.v[1]
+    enemy.v[1] *= 1.1
+  }
+  if(event.which === 100){
+    enemy.x += enemy.v[0]
+    enemy.v[0] *= 1.1
+  }
+  if(event.which === 97){
+    enemy.x -= enemy.v[0]
+    enemy.v[0] *= 1.1
+  }
+}
+
+$("#game-canvas").on("mousemove", function(event) {
+  cursor.x = event.offsetX - (event.offsetX%32);
+  cursor.y = event.offsetY - (event.offsetY%32);
+});
+
+var tower = {x:0, y:0};
+$("#game-canvas").on("click", function() {
+  if(cursor.x >= 640-64 && cursor.y >= 480-64) {
+    if(isBuilding == false) {
+      isBuilding = true;
+    } else {
+      isBuilding = false;
+    }
+  } else {
+    if(isBuilding == true) {
+      tower.x = cursor.x;
+      tower.y = cursor.y;
+      
+      isBuilding = false;
+    }
+  }
+})
