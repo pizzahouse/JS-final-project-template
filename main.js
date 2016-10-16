@@ -82,12 +82,13 @@ var enemy = {
           this.speedY = 0;
         }
       }
-    
-    
-    this.x = this.x + this.speedX/FPS;
-    this.y = this.y + this.speedY/FPS;
+      this.pathDes += 1;
+    }else{ 
+      this.x = this.x + this.speedX/FPS;
+      this.y = this.y + this.speedY/FPS;
+    }
   }
-}
+};
 //轉彎路徑點
 var enemyPath = [
   {x:96, y:64},
