@@ -74,8 +74,8 @@ function draw(){
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
   ctx.fillStyle = "white";
-  ctx.front = "24px Arial";
-  ctx.fillText("HP:" + hp,10,10);
+  ctx.front = "36px Arial";
+  ctx.fillText("HP:" + hp,10,30);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
