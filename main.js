@@ -7,6 +7,7 @@ tImg.src = "images/tower-btn.png";
 var towerImg = document.createElement("img");
 towerImg.src = "images/tower.png";
 var canvas = document.getElementById("game-canvas");
+var hp = 100;
 var ctx = canvas.getContext("2d");
 var fps = 60;
 var enemies = []
@@ -18,6 +19,7 @@ var enemyPath = [
   {x: 224, y: 192},
   {x: 224, y: 320},
   {x: 544, y: 320},
+  {x: 544, y: 96},  
 ];
 function Enemy(){
   this.x = 96,
@@ -68,6 +70,9 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
+  ctx.fillStyle = "white";
+  ctx.front = "24px Arial";
+  ctx.fillText("HP:" + hp,10,10);
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
