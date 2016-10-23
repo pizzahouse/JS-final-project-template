@@ -24,6 +24,7 @@ var enemyPath = [
 function Enemy(){
   this.x = 96,
   this.y = 448,
+  this.hp = 10,
   this.pathDes = 0,
   this.speedX = 0,
   this.speedY = -64,
@@ -74,7 +75,7 @@ function draw(){
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
   ctx.fillStyle = "white";
-  ctx.front = "36px Arial";
+  ctx.font = "36px Arial";
   ctx.fillText("HP:" + hp,10,30);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
@@ -85,8 +86,12 @@ function draw(){
     enemies.push(newEnemy);
   }
   for(var i=0;i<enemies.length;i++){
-    enemies[i].move();
-    ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
+    if(enemy[i].hp <= 0){
+      enemies.splice(i,1);
+    }else{
+      enemies[i].move();
+      ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
+    }
   }
 }
 setInterval(draw,1000/fps);
