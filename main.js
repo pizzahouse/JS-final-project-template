@@ -95,6 +95,11 @@ function draw(){
       ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
     }
   }
+  tower.searchEnemy();
+  if(tower.aimingEnemyId != null){
+    var id = tower.aimingEnemyId;
+    ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
+  }
 }
 setInterval(draw,1000/fps);
 $("body").on("keypress",key);
@@ -127,6 +132,7 @@ var tower = {
   x:0, 
   y:0,
   range:96,
+  aimingEnemyId:null
   searchEnemy:function(){
     for(i=0;i<enemies.length;i++){
       var distance = Math.sqrt(
@@ -141,11 +147,6 @@ var tower = {
     this.aimingEnemyId = null;
   }
 };
-tower.searchEnemy();
-if(tower.aimingEnemyId != null){
-  var id = tower.aimingEnemyId;
-  ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
-}
 $("#game-canvas").on("click", function() {
   if(cursor.x >= 640-64 && cursor.y >= 480-64) {
     if(isBuilding == false) {
