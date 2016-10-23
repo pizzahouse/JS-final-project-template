@@ -70,12 +70,12 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
-  ctx.fillStyle = "white";
-  ctx.front = "24px Arial";
-  ctx.fillText("HP:" + hp,10,10);
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
+  ctx.fillStyle = "white";
+  ctx.front = "24px Arial";
+  ctx.fillText("HP:" + hp,10,10);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
