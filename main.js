@@ -6,6 +6,8 @@ var tImg = document.createElement("img");
 tImg.src = "images/tower-btn.png";
 var towerImg = document.createElement("img");
 towerImg.src = "images/tower.png";
+var crosshairImg = document.createElement("img");
+crosshairImg.src = "images/crosshair.png";
 var canvas = document.getElementById("game-canvas");
 var hp = 100;
 var ctx = canvas.getContext("2d");
@@ -121,7 +123,29 @@ $("#game-canvas").on("mousemove", function(event) {
   cursor.y = event.offsetY - (event.offsetY%32);
 });
 
-var tower = {x:0, y:0};
+var tower = {
+  x:0, 
+  y:0,
+  range:96,
+  searchEnemy:function(){
+    for(i=0;i<enemies.length;i++){
+      var distance = Math.sqrt(
+        Math.pow(this.x - enemies[i].x,2) + Math.pow(this.y - enemies[i].y,2)
+      );
+      if(diatance <= this.rangee){
+        this.aimingEnemyId = i;
+        return;
+      }
+    }
+    //如果都沒找到，會進到這行，清除鎖定目標
+    this.aimingEnemyId = null;
+  }
+};
+tower.searchEnemy();
+if(tower.aimingEnemyId != null){
+  var id = tower.aimingEnemyId;
+  ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
+}
 $("#game-canvas").on("click", function() {
   if(cursor.x >= 640-64 && cursor.y >= 480-64) {
     if(isBuilding == false) {
