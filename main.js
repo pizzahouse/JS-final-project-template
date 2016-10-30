@@ -138,7 +138,7 @@ var tower = {
   damage:5,
   searchEnemy:function(){
     //減少距離下個射擊的時間
-    this.readyToShootTime -= 1/fps
+    this.readyToShootTime -= 1/fps;
     for(i=0;i<enemies.length;i++){
       var distance = Math.sqrt(
         Math.pow(this.x - enemies[i].x,2) + Math.pow(this.y - enemies[i].y,2)
@@ -146,8 +146,8 @@ var tower = {
       if(distance <= this.range){
         this.aimingEnemyId = i;
         if(this.readyToShootTime <= 0){
-          this.shoot();
-          this.readyToShootTime = this.fireRate
+          this.shoot(this.aimingEnemyId);
+          this.readyToShootTime = this.fireRate;
         }
         return;
       }
@@ -155,10 +155,11 @@ var tower = {
     //如果都沒找到，會進到這行，清除鎖定目標
     this.aimingEnemyId = null;
   },
-  shoot:function(){
+  shoot:function(id){
     ctx.beginPath();
     ctx.moveTo(this.x,this.y);
     ctx.lineTo(enemies[id].x, enemies[id].y);
+    ctx.strokeStyle = 'red';
     ctx.lineWidth = 3;
     ctx.storke();
   }
