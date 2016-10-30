@@ -161,7 +161,7 @@ var tower = {
     ctx.lineTo(enemies[id].x, enemies[id].y);
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 3;
-    ctx.storke();
+    ctx.stroke();
   }
 };
 $("#game-canvas").on("click", function() {
