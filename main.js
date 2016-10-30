@@ -10,6 +10,8 @@ var crosshairImg = document.createElement("img");
 crosshairImg.src = "images/crosshair.png";
 var canvas = document.getElementById("game-canvas");
 var hp = 100;
+var money = 0;
+var score = 0;
 var ctx = canvas.getContext("2d");
 var fps = 60;
 var enemies = []
@@ -79,8 +81,8 @@ function draw(){
   ctx.fillStyle = "white";
   ctx.font = "24px Arial";
   ctx.fillText("HP:" + hp,10,30);
-  ctx.fillText("Score:" + 10,50);
-  ctx.fillText("Money:" + 10,70);
+  ctx.fillText("Score:" + score,10,50);
+  ctx.fillText("Money:" + money,10,70);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
