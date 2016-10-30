@@ -168,7 +168,7 @@ var tower = {
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 3;
     ctx.stroke();
-    enemies[id].hp -= damage;
+    enemy.hp -= damage;
   }
 };
 $("#game-canvas").on("click", function() {
