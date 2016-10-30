@@ -13,7 +13,7 @@ var hp = 100;
 var money = 0;
 var score = 0;
 var ctx = canvas.getContext("2d");
-var fps = 60;
+var fps = 30;
 var enemies = []
 var clock = 0
 var enemyPath = [
@@ -139,8 +139,8 @@ var tower = {
   y:0,
   range:96,
   aimingEnemyId:null,
-  fireRate:1,
-  readyToShootTime:1,
+  fireRate:0.3,
+  readyToShootTime:0.3,
   damage:5,
   searchEnemy:function(){
     //減少距離下個射擊的時間
@@ -168,7 +168,7 @@ var tower = {
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 3;
     ctx.stroke();
-    hp -= 5;
+    enemies[id].hp -= damage;
   }
 };
 $("#game-canvas").on("click", function() {
