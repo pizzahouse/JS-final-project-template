@@ -79,6 +79,8 @@ function draw(){
   ctx.fillStyle = "white";
   ctx.font = "36px Arial";
   ctx.fillText("HP:" + hp,10,30);
+  ctx.fillText("Score:");
+  ctx.fillText("Money:");
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
