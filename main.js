@@ -77,10 +77,10 @@ function draw(){
   ctx.drawImage(tImg,640-64,480-64,64,64);
   ctx.drawImage(towerImg, tower.x, tower.y);
   ctx.fillStyle = "white";
-  ctx.font = "36px Arial";
+  ctx.font = "24px Arial";
   ctx.fillText("HP:" + hp,10,30);
-  ctx.fillText("Score:");
-  ctx.fillText("Money:");
+  ctx.fillText("Score:" + 10,50);
+  ctx.fillText("Money:" + 10,70);
   if(isBuilding == true) {
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
