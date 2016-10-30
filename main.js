@@ -93,6 +93,8 @@ function draw(){
   }
   for(var i=0;i<enemies.length;i++){
     if(enemies[i].hp <= 0){
+      score += 5;
+      money += 10;
       enemies.splice(i,1);
     }else{
       enemies[i].move();
@@ -166,6 +168,7 @@ var tower = {
     ctx.strokeStyle = 'red';
     ctx.lineWidth = 3;
     ctx.stroke();
+    hp -= 5;
   }
 };
 $("#game-canvas").on("click", function() {
