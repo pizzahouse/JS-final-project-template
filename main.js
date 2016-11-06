@@ -81,13 +81,13 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
+  ctx.drawImage(bgImg,0,0);
+  ctx.drawImage(tImg,640-64,480-64,64,64);
   if(hp == 0){
     ctx.font = "72px Arial";
     ctx.fillText("GAME OVER,YOU GOT:" + score,200,200);
     clearInterval(intervalId);
   }
-  ctx.drawImage(bgImg,0,0);
-  ctx.drawImage(tImg,640-64,480-64,64,64);
   for(var i=0;i<towers.length;i++){
       ctx.drawImage(eImg,towers[i].x,towers[i].y);
   }
