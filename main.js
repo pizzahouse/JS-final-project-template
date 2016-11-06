@@ -10,7 +10,7 @@ var crosshairImg = document.createElement("img");
 crosshairImg.src = "images/crosshair.png";
 var canvas = document.getElementById("game-canvas");
 var hp = 100;
-var money = 0;
+var money = 100;
 var score = 0;
 var ctx = canvas.getContext("2d");
 var fps = 30;
@@ -89,7 +89,7 @@ function draw(){
     ctx.font = "50px Arial";
     ctx.fillText("you got:",150,290);
     ctx.font = "50px Arial";
-    ctx.fillText(score,150,260);
+    ctx.fillText(score + " points",150,340);
     clearInterval(intervalId);
   }
   for(var i=0;i<towers.length;i++){
