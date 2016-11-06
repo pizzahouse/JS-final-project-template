@@ -35,6 +35,11 @@ function Enemy(){
   this.speedY = -64,
   this.move = function(){
     if(isCollided(enemyPath[this.pathDes].x, enemyPath[this.pathDes].y, this.x, this.y, 64/fps, 64/fps)) {
+      if(this.pathDes == enemyPath.length-1){
+        this.hp = 0;
+        hp -= 20;
+        return;
+      }
       this.x = enemyPath[this.pathDes].x;
       this.y = enemyPath[this.pathDes].y;
       
@@ -76,6 +81,11 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 }
 
 function draw(){
+  if(hp == 0){
+    ctx.font = "72px Arial";
+    ctx.fillText("GAME OVER,YOU GOT:" + score,200,200);
+    clearInterval(intervalId);
+  }
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   for(var i=0;i<towers.length;i++){
@@ -112,7 +122,8 @@ function draw(){
     }
   }
 }
-setInterval(draw,1000/fps);
+var intervalId = setInterval(draw,1000/fps);
+
 $("body").on("keypress",key);
 function key(event){
   console.log(event.which)
