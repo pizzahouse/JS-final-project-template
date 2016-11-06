@@ -14,8 +14,9 @@ var money = 0;
 var score = 0;
 var ctx = canvas.getContext("2d");
 var fps = 30;
-var enemies = []
-var clock = 0
+var enemies = [];
+var towers = [];
+var clock = 0;
 var enemyPath = [
   {x: 96, y: 64},
   {x: 384, y: 64},
@@ -77,7 +78,9 @@ function isCollided(pointX, pointY, targetX, targetY, targetWidth, targetHeight)
 function draw(){
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
-  ctx.drawImage(towerImg, tower.x, tower.y);
+  for(var i=0;i<towers.length;i++){
+      ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
+  }
   ctx.fillStyle = "white";
   ctx.font = "24px Arial";
   ctx.fillText("HP:" + hp,10,30);
@@ -94,17 +97,19 @@ function draw(){
   for(var i=0;i<enemies.length;i++){
     if(enemies[i].hp <= 0){
       score += 5;
-      money += 10;
+      money += 20;
       enemies.splice(i,1);
     }else{
       enemies[i].move();
       ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
     }
   }
-  tower.searchEnemy();
-  if(tower.aimingEnemyId != null){
-    var id = tower.aimingEnemyId;
-    ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
+  for(var i=0;i<towers.length;i++){
+    towers[i].searchEnemy();
+    if(towers[i].aimingEnemyId != null){
+      var id = towers[i].aimingEnemyId;
+      ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
+    }
   }
 }
 setInterval(draw,1000/fps);
@@ -134,17 +139,18 @@ $("#game-canvas").on("mousemove", function(event) {
   cursor.y = event.offsetY - (event.offsetY%32);
 });
 
-var tower = {
-  x:0, 
-  y:0,
-  range:96,
-  aimingEnemyId:null,
-  fireRate:0.3,
-  readyToShootTime:0.3,
-  damage:5,
-  searchEnemy:function(){
+function Tower(){
+  this.x = 0, 
+  this.y = 0,
+  this.range = 96,
+  this.aimingEnemyId = null,
+  this.fireRate = 0.3,
+  this.readyToShootTime = 0.3,
+  this.damage = 5,
+  this.searchEnemy = function(){
     //減少距離下個射擊的時間
     this.readyToShootTime -= 1/fps;
+    this.aimingEnemyId = null;
     for(i=0;i<enemies.length;i++){
       var distance = Math.sqrt(
         Math.pow(this.x - enemies[i].x,2) + Math.pow(this.y - enemies[i].y,2)
@@ -158,10 +164,8 @@ var tower = {
         return;
       }
     }
-    //如果都沒找到，會進到這行，清除鎖定目標
-    this.aimingEnemyId = null;
   },
-  shoot:function(id){
+  this.shoot = function(id){
     ctx.beginPath();
     ctx.moveTo(this.x,this.y);
     ctx.lineTo(enemies[id].x, enemies[id].y);
@@ -180,9 +184,13 @@ $("#game-canvas").on("click", function() {
     }
   } else {
     if(isBuilding == true) {
-      tower.x = cursor.x;
-      tower.y = cursor.y;
-      
+      if(money >= 50){
+        var tower = new Tower();
+        tower.x = cursor.x;
+        tower.y = cursor.y;
+        towers.push(tower);
+        money -=10;
+      }
       isBuilding = false;
     }
   }
