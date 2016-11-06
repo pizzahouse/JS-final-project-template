@@ -79,14 +79,14 @@ function draw(){
   ctx.drawImage(bgImg,0,0);
   ctx.drawImage(tImg,640-64,480-64,64,64);
   for(var i=0;i<towers.length;i++){
-      ctx.drawImage(eImg,enemies[i].x,enemies[i].y);
+      ctx.drawImage(eImg,towers[i].x,towers[i].y);
   }
   ctx.fillStyle = "white";
   ctx.font = "24px Arial";
   ctx.fillText("HP:" + hp,10,30);
   ctx.fillText("Score:" + score,10,50);
   ctx.fillText("Money:" + money,10,70);
-  if(isBuilding == true) {
+  if(isBuilding == true){
     ctx.drawImage(towerImg, cursor.x, cursor.y);  
   }
   clock++;
@@ -140,13 +140,13 @@ $("#game-canvas").on("mousemove", function(event) {
 });
 
 function Tower(){
-  this.x = 0, 
-  this.y = 0,
-  this.range = 96,
-  this.aimingEnemyId = null,
-  this.fireRate = 0.3,
-  this.readyToShootTime = 0.3,
-  this.damage = 5,
+  this.x = 0; 
+  this.y = 0;
+  this.range = 96;
+  this.aimingEnemyId = null;
+  this.fireRate = 0.3;
+  this.readyToShootTime = 0.3;
+  this.damage = 5;
   this.searchEnemy = function(){
     //減少距離下個射擊的時間
     this.readyToShootTime -= 1/fps;
@@ -164,7 +164,7 @@ function Tower(){
         return;
       }
     }
-  },
+  };
   this.shoot = function(id){
     ctx.beginPath();
     ctx.moveTo(this.x,this.y);
