@@ -93,7 +93,7 @@ function draw(){
     clearInterval(intervalId);
   }
   for(var i=0;i<towers.length;i++){
-      ctx.drawImage(eImg,towers[i].x,towers[i].y);
+      ctx.drawImage(towerImg,towers[i].x,towers[i].y);
   }
   ctx.fillStyle = "white";
   ctx.font = "24px Arial";
@@ -122,7 +122,7 @@ function draw(){
     towers[i].searchEnemy();
     if(towers[i].aimingEnemyId != null){
       var id = towers[i].aimingEnemyId;
-      ctx.drawImage(crosshairImg, towers[i].x, towers[i].y);
+      ctx.drawImage(crosshairImg, enemies[id].x, enemies[id].y);
     }
   }
 }
