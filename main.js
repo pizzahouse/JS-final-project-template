@@ -85,7 +85,11 @@ function draw(){
   ctx.drawImage(tImg,640-64,480-64,64,64);
   if(hp == 0){
     ctx.font = "72px Arial";
-    ctx.fillText("GAME OVER,YOU GOT:" + score,200,200);
+    ctx.fillText("GAME OVER",150,200);
+    ctx.font = "50px Arial";
+    ctx.fillText("you got:",150,290);
+    ctx.font = "50px Arial";
+    ctx.fillText(score,150,260);
     clearInterval(intervalId);
   }
   for(var i=0;i<towers.length;i++){
